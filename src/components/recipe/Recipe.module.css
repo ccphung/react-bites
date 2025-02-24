@@ -1,0 +1,41 @@
+.recipe {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+  column-gap: 2.4rem;
+  font-size: 1.1rem;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  align-items: center;
+  margin-top: 20px;
+  cursor: pointer;
+  max-width: 200px;
+}
+
+.recipe li {
+  list-style: none;
+}
+
+.recipe img {
+  width: 200px;
+  height: 200px;
+}
+
+.recipe:hover {
+  background: rgb(220, 220, 220);
+  transition: 150ms;
+  color: black;
+}
+
+.selectedRecipe {
+  background: #00c9a7;
+  color: white;
+}
+
+.recipe p {
+  max-width: 100%;
+  word-wrap: break-word;
+  white-space: normal;
+  overflow-wrap: break-word;
+  text-align: center;
+}

@@ -1,0 +1,27 @@
+.nav {
+  margin-top: 3rem;
+  margin-bottom: 2rem;
+  border-radius: 20px;
+  color: rgb(226, 225, 225);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+  background: light;
+}
+
+.nav ul {
+  list-style: none;
+  display: flex;
+  padding: 5px;
+  border-radius: 20px;
+  justify-content: center;
+}
+
+.activeTab {
+  background: #008771;
+}
+
+.nonActiveTab {
+  background-color: lightgray;
+}
