@@ -39,3 +39,13 @@
   overflow-wrap: break-word;
   text-align: center;
 }
+
+.imgContainer {
+  position: relative;
+}
+
+.recipeFav {
+  position: absolute;
+  right: 10%;
+  top: 5%;
+}

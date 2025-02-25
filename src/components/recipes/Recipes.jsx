@@ -1,12 +1,21 @@
 import Recipe from "../recipe/Recipe";
 import styles from "./Recipes.module.css";
 
-function Recipes({ query, recipes, isLoading, onSelectRecipe, selectedId }) {
+function Recipes({
+  query,
+  recipes,
+  isLoading,
+  onSelectRecipe,
+  selectedId,
+  favorites,
+}) {
   return (
     <div className={styles.recipes}>
-      <h3>
-        Found {recipes?.length || 0} <strong>results</strong>
-      </h3>
+      {query.length > 2 && (
+        <h3>
+          Found {recipes?.length || 0} <strong>results</strong>
+        </h3>
+      )}
 
       {!isLoading && query.length === 0 && recipes?.length === 0 && (
         <div>Start searching for a recipe...</div>
@@ -22,6 +31,7 @@ function Recipes({ query, recipes, isLoading, onSelectRecipe, selectedId }) {
               onSelectRecipe={onSelectRecipe}
               key={recipe.idMeal}
               selectedId={selectedId}
+              favorites={favorites}
             />
           ))}
       </ul>

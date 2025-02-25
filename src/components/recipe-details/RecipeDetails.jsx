@@ -47,6 +47,10 @@ function RecipeDetails({
     getRecipeDetails();
   }, [selectedId, setRecipe]);
 
+  useEffect(() => {
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+  }, [favorites]);
+
   if (error) return <div className={styles.error}>⚠️ {error}</div>;
 
   function handleClick() {
@@ -60,7 +64,7 @@ function RecipeDetails({
 
   return (
     <div className={styles.recipeDetails}>
-      <h1>✍️ Recipe Details</h1>
+      <h1> Recipe Details ✍️</h1>
       {!selectedId ? (
         <div>Click on a picture to see the recipe</div>
       ) : (

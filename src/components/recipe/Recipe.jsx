@@ -1,6 +1,7 @@
+import { Heart } from "lucide-react";
 import styles from "./Recipe.module.css";
 
-function Recipe({ recipe, onSelectRecipe, selectedId }) {
+function Recipe({ recipe, onSelectRecipe, selectedId, favorites }) {
   return (
     <li
       className={`${styles.recipe} ${
@@ -9,7 +10,19 @@ function Recipe({ recipe, onSelectRecipe, selectedId }) {
       onClick={() => onSelectRecipe(recipe.idMeal)}
     >
       <p>{recipe.strMeal}</p>
-      <img src={recipe.strMealThumb} />
+      <div className={styles.imgContainer}>
+        <img src={recipe.strMealThumb} />
+
+        {favorites.map((fav) =>
+          fav.idMeal === recipe.idMeal ? (
+            <div className={styles.recipeFav} key={fav.idMeal}>
+              <Heart fill="red" color="white" />
+            </div>
+          ) : (
+            ""
+          )
+        )}
+      </div>
     </li>
   );
 }
