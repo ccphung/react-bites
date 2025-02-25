@@ -10,9 +10,18 @@ function RecipeProvider({ children }) {
   const [isLoading, setIsLoading] = useState(false);
   const [query, setQuery] = useState("");
   const [showFavorites, setShowFavorites] = useState(false);
-  const [favorites, setFavorites] = useState(
-    JSON.parse(localStorage.getItem("favorites"))
-  );
+  const [favorites, setFavorites] = useState(() => {
+    const storedFavorites = localStorage.getItem("favorites");
+    if (!storedFavorites) {
+      return [];
+    }
+    try {
+      return JSON.parse(storedFavorites);
+    } catch (error) {
+      console.error("Erreur lors duError with parsing favorites", error);
+      return [];
+    }
+  });
 
   useEffect(
     function () {
