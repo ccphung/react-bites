@@ -1,27 +1,41 @@
 .nav {
-  margin-top: 3rem;
-  margin-bottom: 2rem;
-  border-radius: 20px;
-  color: rgb(226, 225, 225);
-  width: 100%;
   display: flex;
   justify-content: center;
+  align-items: center;
   padding: 1rem;
-  background: light;
+  border-radius: 20px;
 }
 
 .nav ul {
-  list-style: none;
   display: flex;
+  list-style: none;
   padding: 5px;
   border-radius: 20px;
-  justify-content: center;
+  gap: 10px;
 }
 
-.activeTab {
+.nav button {
+  width: 100%;
+  height: 70%;
+  padding: 12px 20px;
+  border-radius: 20px;
+  font-weight: bold;
+  text-align: center;
+  cursor: pointer;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.nav button.activeTab {
   background: #008771;
+  color: white;
 }
 
-.nonActiveTab {
-  background-color: lightgray;
+.nav button.nonActiveTab {
+  background: lightgray;
+  color: black;
+}
+
+.nav button.nonActiveTab:hover {
+  background: #d3d3d3;
+  color: black;
 }
