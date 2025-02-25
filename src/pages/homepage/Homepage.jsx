@@ -5,13 +5,20 @@ import RecipeDetails from "../../components/recipe-details/RecipeDetails";
 import Favorites from "../../components/favorites/Favorites";
 import NavigationTab from "../../components/navigationTab/NavigationTab";
 
-function Homepage({ query, showFavorites, setShowFavorites }) {
+function Homepage({
+  query,
+  showFavorites,
+  setShowFavorites,
+  selectedId,
+  setSelectedId,
+}) {
   const [recipe, setRecipe] = useState([]);
   const [recipes, setRecipes] = useState([]);
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [selectedId, setSelectedId] = useState(null);
-  const [favorites, setFavorites] = useState([]);
+  const [favorites, setFavorites] = useState(
+    JSON.parse(localStorage.getItem("favorites"))
+  );
 
   useEffect(
     function () {
@@ -64,6 +71,7 @@ function Homepage({ query, showFavorites, setShowFavorites }) {
               favorites={favorites}
               onSelectRecipe={handleSelectRecipe}
               selectedId={selectedId}
+              setFavorites={setFavorites}
             />
           ) : (
             <Recipes
@@ -72,6 +80,7 @@ function Homepage({ query, showFavorites, setShowFavorites }) {
               isLoading={isLoading}
               onSelectRecipe={handleSelectRecipe}
               selectedId={selectedId}
+              favorites={favorites}
             />
           )}
         </div>
