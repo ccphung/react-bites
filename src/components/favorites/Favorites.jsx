@@ -1,8 +1,10 @@
 import { Heart } from "lucide-react";
 import Recipe from "../recipe/Recipe";
 import styles from "./Favorites.module.css";
+import { useRecipe } from "../../contexts/RecipeProvider";
 
-function Favorites({ setFavorites, favorites, onSelectRecipe, selectedId }) {
+function Favorites() {
+  const { favorites } = useRecipe();
   return (
     <div className={styles.favorites}>
       <h3>
@@ -11,13 +13,7 @@ function Favorites({ setFavorites, favorites, onSelectRecipe, selectedId }) {
       </h3>
       <ul className={styles.favoritesWrapper}>
         {favorites?.map((recipe) => (
-          <Recipe
-            key={recipe.idMeal}
-            recipe={recipe}
-            onSelectRecipe={onSelectRecipe}
-            selectedId={selectedId}
-            favorites={favorites}
-          />
+          <Recipe key={recipe.idMeal} recipe={recipe} />
         ))}
       </ul>
     </div>

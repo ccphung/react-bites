@@ -1,14 +1,9 @@
+import { useRecipe } from "../../contexts/RecipeProvider";
 import Recipe from "../recipe/Recipe";
 import styles from "./Recipes.module.css";
 
-function Recipes({
-  query,
-  recipes,
-  isLoading,
-  onSelectRecipe,
-  selectedId,
-  favorites,
-}) {
+function Recipes() {
+  const { query, recipes, isLoading } = useRecipe();
   return (
     <div className={styles.recipes}>
       {query.length > 2 && (
@@ -26,13 +21,7 @@ function Recipes({
       <ul className={styles.recipesWrapper}>
         {!isLoading &&
           recipes?.map((recipe) => (
-            <Recipe
-              recipe={recipe}
-              onSelectRecipe={onSelectRecipe}
-              key={recipe.idMeal}
-              selectedId={selectedId}
-              favorites={favorites}
-            />
+            <Recipe key={recipe.idMeal} recipe={recipe} />
           ))}
       </ul>
     </div>

@@ -3,12 +3,12 @@ import Random from "../random/Random";
 import SearchBar from "../searchbar/SearchBar";
 import styles from "./Navbar.module.css";
 
-function Navbar({ setQuery, selectedId, setSelectedId }) {
+function Navbar() {
   return (
     <div className={styles.nav}>
       <Logo />
-      <SearchBar setQuery={setQuery} />
-      <Random selectedId={selectedId} setSelectedId={setSelectedId} />
+      <SearchBar />
+      <Random />
     </div>
   );
 }

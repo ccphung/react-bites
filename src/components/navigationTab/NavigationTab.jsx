@@ -1,7 +1,9 @@
+import { useRecipe } from "../../contexts/RecipeProvider";
 import styles from "./NavigationTab.module.css";
 import { Button } from "@mui/material";
 
-function NavigationTab({ showFavorites, setShowFavorites }) {
+function NavigationTab() {
+  const { showFavorites, setShowFavorites } = useRecipe();
   return (
     <nav className={styles.nav}>
       <ul>

@@ -1,6 +1,8 @@
+import { useRecipe } from "../../contexts/RecipeProvider";
 import styles from "./SearchBar.module.css";
 
-function SearchBar({ setQuery }) {
+function SearchBar() {
+  const { setQuery } = useRecipe();
   return (
     <input
       className={styles.searchbar}

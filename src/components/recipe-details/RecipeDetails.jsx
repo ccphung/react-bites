@@ -1,14 +1,17 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import styles from "./RecipeDetails.module.css";
+import { useRecipe } from "../../contexts/RecipeProvider";
 
-function RecipeDetails({
-  selectedId,
-  setRecipe,
-  recipe,
-  setFavorites,
-  favorites,
-}) {
-  const [error, setError] = useState("");
+function RecipeDetails() {
+  const {
+    selectedId,
+    setRecipe,
+    recipe,
+    setFavorites,
+    favorites,
+    error,
+    setError,
+  } = useRecipe();
 
   const ingredients = recipe
     ? Array.from({ length: 20 }, (_, i) => {

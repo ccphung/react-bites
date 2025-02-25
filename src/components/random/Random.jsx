@@ -2,8 +2,10 @@ import styles from "./Random.module.css";
 import { ShuffleOutlined } from "@mui/icons-material";
 import { Button } from "@mui/material";
 import { useEffect, useState } from "react";
+import { useRecipe } from "../../contexts/RecipeProvider";
 
-function Random({ selectedId, setSelectedId }) {
+function Random() {
+  const { setSelectedId } = useRecipe();
   const [clicked, setClicked] = useState(false);
 
   useEffect(
@@ -24,7 +26,7 @@ function Random({ selectedId, setSelectedId }) {
       }
       getRandom();
     },
-    [clicked]
+    [clicked, setSelectedId]
   );
 
   return (

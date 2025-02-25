@@ -1,7 +1,9 @@
 import { Heart } from "lucide-react";
 import styles from "./Recipe.module.css";
+import { useRecipe } from "../../contexts/RecipeProvider";
 
-function Recipe({ recipe, onSelectRecipe, selectedId, favorites }) {
+function Recipe({recipe}) {
+  const {  onSelectRecipe, selectedId, favorites } = useRecipe();
   return (
     <li
       className={`${styles.recipe} ${
