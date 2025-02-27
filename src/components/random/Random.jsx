@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { useRecipe } from "../../contexts/RecipeProvider";
 
 function Random() {
-  const { setSelectedId } = useRecipe();
+  const { dispatch } = useRecipe();
   const [clicked, setClicked] = useState(false);
 
   useEffect(
@@ -17,16 +17,16 @@ function Random() {
             "https://www.themealdb.com/api/json/v1/1/random.php"
           );
           const data = await res.json();
-          setSelectedId(data.meals[0].idMeal);
+          dispatch({ type: "selectReceipe", payload: data.meals[0].idMeal });
         } catch (err) {
-          console.log(err.message);
+          dispatch({ type: "dataFailed", payload: err.message });
         } finally {
           setClicked(false);
         }
       }
       getRandom();
     },
-    [clicked, setSelectedId]
+    [clicked, dispatch]
   );
 
   return (

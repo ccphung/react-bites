@@ -3,7 +3,7 @@ import styles from "./NavigationTab.module.css";
 import { Button } from "@mui/material";
 
 function NavigationTab() {
-  const { showFavorites, setShowFavorites } = useRecipe();
+  const { dispatch, showFavorites } = useRecipe();
   return (
     <nav className={styles.nav}>
       <ul>
@@ -12,7 +12,7 @@ function NavigationTab() {
             variant="contained"
             color={showFavorites ? "default" : "primary"}
             className={showFavorites ? styles.nonActiveTab : styles.activeTab}
-            onClick={() => setShowFavorites(false)}
+            onClick={() => dispatch({ type: "hideFavorites" })}
           >
             Results
           </Button>
@@ -23,7 +23,7 @@ function NavigationTab() {
             variant="contained"
             color={showFavorites ? "primary" : "default"}
             className={showFavorites ? styles.activeTab : styles.nonActiveTab}
-            onClick={() => setShowFavorites(true)}
+            onClick={() => dispatch({ type: "showFavorites" })}
           >
             Favorites
           </Button>

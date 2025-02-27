@@ -1,51 +1,113 @@
-import { useState, useEffect, createContext, useContext } from "react";
+import { useEffect, createContext, useContext, useReducer } from "react";
 
 const RecipeContext = createContext();
 
+const initialState = {
+  selectedId: null,
+  recipe: [],
+  recipes: [],
+  error: "",
+  isLoading: false,
+  query: "",
+  showFavorites: false,
+  favorites: JSON.parse(localStorage.getItem("favorites")) || [],
+};
+
+function reducer(state, action) {
+  switch (action.type) {
+    case "dataFetch":
+      return {
+        ...state,
+        isLoading: true,
+        showFavorites: false,
+        error: "",
+      };
+    case "dataReceived":
+      return { ...state, isLoading: false, recipes: action.payload };
+
+    case "dataFailed":
+      return { ...state, isLoading: false, error: action.payload };
+
+    case "resetRecipes":
+      return { ...state, recipes: [] };
+
+    case "selectReceipe":
+      return {
+        ...state,
+        selectedId: action.payload === state.selectedId ? null : action.payload,
+      };
+    case "setReceipe":
+      return {
+        ...state,
+        recipe: action.payload,
+      };
+
+    case "showFavorites":
+      return {
+        ...state,
+        showFavorites: true,
+      };
+    case "hideFavorites":
+      return {
+        ...state,
+        showFavorites: false,
+      };
+
+    case "searchRecipe":
+      return {
+        ...state,
+        query: action.payload,
+      };
+
+    case "toggleFavorite": {
+      const isFavorite = state.favorites.some(
+        (fav) => fav.idMeal === action.payload.idMeal
+      );
+
+      const updatedFavorites = isFavorite
+        ? state.favorites.filter((fav) => fav.idMeal !== action.payload.idMeal)
+        : [...state.favorites, action.payload];
+
+      return { ...state, favorites: updatedFavorites };
+    }
+
+    default:
+      throw new Error("Action unknown");
+  }
+}
+
 function RecipeProvider({ children }) {
-  const [selectedId, setSelectedId] = useState(null);
-  const [recipe, setRecipe] = useState([]);
-  const [recipes, setRecipes] = useState([]);
-  const [error, setError] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-  const [query, setQuery] = useState("");
-  const [showFavorites, setShowFavorites] = useState(false);
-  const [favorites, setFavorites] = useState(() => {
-    const storedFavorites = localStorage.getItem("favorites");
-    if (!storedFavorites) {
-      return [];
-    }
-    try {
-      return JSON.parse(storedFavorites);
-    } catch (error) {
-      console.error("Erreur lors duError with parsing favorites", error);
-      return [];
-    }
-  });
+  const [
+    {
+      selectedId,
+      recipe,
+      recipes,
+      error,
+      isLoading,
+      query,
+      showFavorites,
+      favorites,
+    },
+    dispatch,
+  ] = useReducer(reducer, initialState);
 
   useEffect(
     function () {
       const controller = new AbortController();
       async function searchRecipes() {
         try {
-          setIsLoading(false);
-          setShowFavorites(false);
-          setError("");
+          dispatch({ type: "dataFetch" });
           const res = await fetch(
             `https://www.themealdb.com/api/json/v1/1/search.php?s=${query}`
           );
           const data = await res.json();
-          setRecipes(data.meals);
-          console.log(data.meals);
+          dispatch({ type: "dataReceived", payload: data.meals });
         } catch (err) {
-          setError(err.message);
-        } finally {
-          setIsLoading(false);
+          dispatch({ type: "dataFailed", payload: err.message });
         }
       }
       if (query.length < 3) {
-        setRecipes([]);
-        setSelectedId("");
+        dispatch({ type: "resetRecipes" });
         return;
       }
       searchRecipes();
@@ -58,29 +120,25 @@ function RecipeProvider({ children }) {
   );
 
   function handleSelectRecipe(id) {
-    setSelectedId((selectedId) => (id === selectedId ? null : id));
+    dispatch({
+      type: "selectReceipe",
+      payload: id,
+    });
   }
 
   return (
     <RecipeContext.Provider
       value={{
         selectedId,
-        setSelectedId,
         recipe,
-        setRecipe,
         recipes,
-        setRecipes,
         error,
-        setError,
         isLoading,
-        setIsLoading,
         query,
-        setQuery,
         onSelectRecipe: handleSelectRecipe,
         showFavorites,
-        setShowFavorites,
         favorites,
-        setFavorites,
+        dispatch,
       }}
     >
       {children}

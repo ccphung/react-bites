@@ -2,14 +2,16 @@ import { Heart } from "lucide-react";
 import styles from "./Recipe.module.css";
 import { useRecipe } from "../../contexts/RecipeProvider";
 
-function Recipe({recipe}) {
-  const {  onSelectRecipe, selectedId, favorites } = useRecipe();
+function Recipe({ recipe }) {
+  const { dispatch, selectedId, favorites } = useRecipe();
   return (
     <li
       className={`${styles.recipe} ${
         selectedId === recipe.idMeal ? styles.selectedRecipe : ""
       }`}
-      onClick={() => onSelectRecipe(recipe.idMeal)}
+      onClick={() =>
+        dispatch({ type: "selectReceipe", payload: recipe.idMeal })
+      }
     >
       <p>{recipe.strMeal}</p>
       <div className={styles.imgContainer}>
