@@ -8,8 +8,18 @@ function Favorites() {
   return (
     <div className={styles.favorites}>
       <h3>
-        You have {favorites?.length || 0} <strong>favorites</strong>
-        <Heart color="green" fill="green" />
+        You have {favorites?.length || 0}{" "}
+        {favorites?.length === 1 && (
+          <>
+            <strong>favorite</strong> <Heart color="green" fill="green" />
+          </>
+        )}
+        {favorites?.length === 0 && <strong>favorite 😫 </strong>}
+        {favorites?.length > 1 && (
+          <>
+            <strong>favorites</strong> <Heart color="green" fill="green" />
+          </>
+        )}
       </h3>
       <ul className={styles.favoritesWrapper}>
         {favorites?.map((recipe) => (
