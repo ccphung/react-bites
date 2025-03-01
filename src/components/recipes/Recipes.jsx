@@ -6,7 +6,7 @@ function Recipes() {
   const { query, recipes, isLoading } = useRecipe();
   return (
     <div className={styles.recipes}>
-      {query.length > 2 && (
+      {!isLoading && query.length > 2 && (
         <h3>
           Found {recipes?.length || 0} <strong>results</strong>
         </h3>
