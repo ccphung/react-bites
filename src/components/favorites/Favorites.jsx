@@ -11,13 +11,13 @@ function Favorites() {
         You have {favorites?.length || 0}{" "}
         {favorites?.length === 1 && (
           <>
-            <strong>favorite</strong> <Heart color="green" fill="green" />
+            <strong>favorite</strong> <Heart color="#e38a95" fill="#e38a95" />
           </>
         )}
         {favorites?.length === 0 && <strong>favorite 😫 </strong>}
         {favorites?.length > 1 && (
           <>
-            <strong>favorites</strong> <Heart color="green" fill="green" />
+            <strong>favorites</strong> <Heart color="#e38a95" fill="#e38a95" />
           </>
         )}
       </h3>
