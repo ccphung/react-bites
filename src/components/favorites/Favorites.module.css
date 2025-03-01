@@ -9,8 +9,8 @@
 }
 
 .favoritesWrapper {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 20px;
   align-items: center;
   text-align: center;
@@ -19,4 +19,13 @@
   white-space: normal;
   overflow-wrap: break-word;
   max-width: 100%;
+}
+
+@media (max-width: 900px) {
+  .favoritesWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
 }

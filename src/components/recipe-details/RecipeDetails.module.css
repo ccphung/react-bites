@@ -103,10 +103,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 80vw;
+    width: 100%;
   }
   .smallScreen {
-    display: block;
+    display: flex;
   }
 }
 

@@ -8,22 +8,20 @@
 }
 
 .recipesWrapper {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  text-align: center;
-  flex-wrap: wrap;
-  word-wrap: break-word;
-  white-space: normal;
-  overflow-wrap: break-word;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   max-width: 100%;
   gap: 20px;
 }
 
 @media (max-width: 900px) {
-  .receipes {
+  .recipesWrapper {
     display: flex;
     flex-direction: column;
-    width: 80vw;
+    justify-content: center;
+    align-items: center;
+    gap: 0px;
+    overflow: hidden;
+    width: 100%;
   }
 }

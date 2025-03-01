@@ -19,7 +19,7 @@ function Recipe({ recipe }) {
           {favorites.map((fav) =>
             fav.idMeal === recipe.idMeal ? (
               <div className={styles.recipeFav} key={fav.idMeal}>
-                <Heart fill="red" color="white" />
+                <Heart fill="#e38a90" color="#e38a90" />
               </div>
             ) : (
               ""
