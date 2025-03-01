@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import styles from "./RecipeDetails.module.css";
 import { useRecipe } from "../../contexts/RecipeProvider";
 
@@ -16,6 +16,16 @@ function RecipeDetails({ screen }) {
       }).filter(Boolean)
     : [];
 
+  const ingredientList = recipe
+    ? Array.from({ length: 20 }, (_, i) => {
+        const ingredient = recipe[`strIngredient${i + 1}`];
+
+        return ingredient !== "" ? ingredient?.replace(" ", "_") : null;
+      }).filter(Boolean)
+    : [];
+
+  console.log(ingredientList);
+
   useEffect(() => {
     async function getRecipeDetails() {
       if (!selectedId) return;
@@ -25,6 +35,7 @@ function RecipeDetails({ screen }) {
           `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${selectedId}`
         );
         const data = await res.json();
+
         if (data.meals) {
           dispatch({ type: "setReceipe", payload: data.meals[0] });
         } else {
@@ -57,12 +68,11 @@ function RecipeDetails({ screen }) {
         screen === "small" ? styles.smallScreen : styles.largeScreen
       }`}
     >
-      <h1> Recipe Details ✍️</h1>
       {!selectedId ? (
         <div>Click on a picture to see the recipe</div>
       ) : (
         <>
-          <h3>{recipe?.strMeal || "Loading..."}</h3>
+          <h1>{recipe?.strMeal || "Loading..."}</h1>
           {recipe?.strMealThumb && (
             <div className={styles.recipeDetailImgContainer}>
               <img
@@ -82,11 +92,29 @@ function RecipeDetails({ screen }) {
           )}
           <h3>Ingredients</h3>
           <ul>
-            {ingredients.length > 0 ? (
-              ingredients.map((item, index) => <li key={index}>{item}</li>)
-            ) : (
-              <li>Loading ingredients...</li>
-            )}
+            <li className={styles.ingredientList}>
+              <div className={styles.ingredientsContainer}>
+                {ingredientList.length > 0 && ingredients.length > 0
+                  ? ingredientList.map((ingredient, index) => {
+                      const ingredientImage = `https://www.themealdb.com/images/ingredients/${ingredient}.png`;
+                      const ingredientName = ingredients[index];
+
+                      return (
+                        <div key={index} className={styles.ingredientWrapper}>
+                          <img
+                            src={ingredientImage}
+                            alt={ingredientName}
+                            className={styles.ingredientImage}
+                          />
+                          <p className={styles.ingredientName}>
+                            {ingredientName}
+                          </p>
+                        </div>
+                      );
+                    })
+                  : "Loading..."}
+              </div>
+            </li>
           </ul>
           <h3>Instructions</h3>
           <p>{recipe?.strInstructions || "Loading instructions..."}</p>
