@@ -1,7 +1,5 @@
 import { useEffect, createContext, useContext, useReducer } from "react";
 
-import useWindowWidth from "../components/hooks/useWindowWidth";
-
 const RecipeContext = createContext();
 
 const initialState = {
@@ -49,7 +47,7 @@ function reducer(state, action) {
             ? action.payload === state.selectedId
               ? null
               : action.payload
-            : state.selectedId,
+            : action.payload,
         showRecipeDetails: window.innerWidth < 900,
         showFavorites: window.innerWidth < 900 ? false : state.showFavorites,
         showResults: window.innerWidth < 900 ? false : state.showResults,
