@@ -6,9 +6,11 @@ import styles from "./Navbar.module.css";
 function Navbar() {
   return (
     <div className={styles.nav}>
-      <Logo />
-      <SearchBar />
-      <Random />
+      <div className={styles.container}>
+        <Logo />
+        <SearchBar />
+        <Random />
+      </div>
     </div>
   );
 }

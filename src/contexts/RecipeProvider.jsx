@@ -1,5 +1,7 @@
 import { useEffect, createContext, useContext, useReducer } from "react";
 
+import useWindowWidth from "../components/hooks/useWindowWidth";
+
 const RecipeContext = createContext();
 
 const initialState = {
@@ -9,7 +11,9 @@ const initialState = {
   error: "",
   isLoading: false,
   query: "",
+  showResults: true,
   showFavorites: false,
+  showRecipeDetails: false,
   favorites: JSON.parse(localStorage.getItem("favorites")) || [],
 };
 
@@ -19,11 +23,17 @@ function reducer(state, action) {
       return {
         ...state,
         isLoading: true,
-        showFavorites: false,
         error: "",
       };
     case "dataReceived":
-      return { ...state, isLoading: false, recipes: action.payload };
+      return {
+        ...state,
+        isLoading: false,
+        recipes: action.payload,
+        showResults: true,
+        showFavorites: false,
+        showRecipeDetails: false,
+      };
 
     case "dataFailed":
       return { ...state, isLoading: false, error: action.payload };
@@ -34,7 +44,15 @@ function reducer(state, action) {
     case "selectReceipe":
       return {
         ...state,
-        selectedId: action.payload === state.selectedId ? null : action.payload,
+        selectedId:
+          window.innerWidth > 900
+            ? action.payload === state.selectedId
+              ? null
+              : action.payload
+            : state.selectedId,
+        showRecipeDetails: window.innerWidth < 900,
+        showFavorites: window.innerWidth < 900 ? false : state.showFavorites,
+        showResults: window.innerWidth < 900 ? false : state.showResults,
       };
     case "setReceipe":
       return {
@@ -45,11 +63,22 @@ function reducer(state, action) {
     case "showFavorites":
       return {
         ...state,
+        showRecipeDetails: false,
+        showResults: false,
         showFavorites: true,
       };
-    case "hideFavorites":
+    case "showRecipeDetails":
       return {
         ...state,
+        showRecipeDetails: true,
+        showResults: false,
+        showFavorites: false,
+      };
+    case "showResults":
+      return {
+        ...state,
+        showRecipeDetails: false,
+        showResults: true,
         showFavorites: false,
       };
 
@@ -87,6 +116,8 @@ function RecipeProvider({ children }) {
       query,
       showFavorites,
       favorites,
+      showRecipeDetails,
+      showResults,
     },
     dispatch,
   ] = useReducer(reducer, initialState);
@@ -139,6 +170,8 @@ function RecipeProvider({ children }) {
         showFavorites,
         favorites,
         dispatch,
+        showRecipeDetails,
+        showResults,
       }}
     >
       {children}

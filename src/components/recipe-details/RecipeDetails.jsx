@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import styles from "./RecipeDetails.module.css";
 import { useRecipe } from "../../contexts/RecipeProvider";
 
-function RecipeDetails() {
+function RecipeDetails({ screen }) {
   const { selectedId, recipe, favorites, error, dispatch } = useRecipe();
 
   const ingredients = recipe
@@ -52,7 +52,11 @@ function RecipeDetails() {
   }
 
   return (
-    <div className={styles.recipeDetails}>
+    <div
+      className={`${styles.recipeDetails} ${
+        screen === "small" ? styles.smallScreen : styles.largeScreen
+      }`}
+    >
       <h1> Recipe Details ✍️</h1>
       {!selectedId ? (
         <div>Click on a picture to see the recipe</div>

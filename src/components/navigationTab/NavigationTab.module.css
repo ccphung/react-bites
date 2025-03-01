@@ -26,16 +26,26 @@
 }
 
 .nav button.activeTab {
-  background: #008771;
+  background: #b17e6a;
   color: white;
 }
 
 .nav button.nonActiveTab {
-  background: lightgray;
+  background: #ecf8f8;
   color: black;
 }
 
 .nav button.nonActiveTab:hover {
   background: #d3d3d3;
   color: black;
+}
+
+.recipeDetailsBtn {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .recipeDetailsBtn {
+    display: block;
+  }
 }

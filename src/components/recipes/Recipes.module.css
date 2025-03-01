@@ -4,6 +4,7 @@
   justify-content: flex-start;
   align-items: center;
   max-width: 100%;
+  margin-bottom: 50px;
 }
 
 .recipesWrapper {
@@ -15,7 +16,14 @@
   word-wrap: break-word;
   white-space: normal;
   overflow-wrap: break-word;
-  text-align: center;
   max-width: 100%;
   gap: 20px;
+}
+
+@media (max-width: 900px) {
+  .receipes {
+    display: flex;
+    flex-direction: column;
+    width: 80vw;
+  }
 }

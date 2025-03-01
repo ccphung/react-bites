@@ -6,15 +6,17 @@ import NavigationTab from "../../components/navigationTab/NavigationTab";
 import { useRecipe } from "../../contexts/RecipeProvider";
 
 function Homepage() {
-  const { showFavorites } = useRecipe();
+  const { showFavorites, showResults, showRecipeDetails } = useRecipe();
   return (
     <div className={styles.homepage}>
       <div className={styles.homeContainer}>
         <div>
           <NavigationTab />
-          {showFavorites ? <Favorites /> : <Recipes />}
+          {showFavorites && <Favorites />}
+          {showResults && <Recipes />}
+          {showRecipeDetails && <RecipeDetails screen="small" />}
         </div>
-        <RecipeDetails />
+        <RecipeDetails screen="large" />
       </div>
     </div>
   );

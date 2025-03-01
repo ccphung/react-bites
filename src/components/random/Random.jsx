@@ -35,7 +35,7 @@ function Random() {
         variant="contained"
         onClick={() => setClicked(true)}
         sx={{
-          backgroundColor: "#008771",
+          backgroundColor: "#b2967d",
         }}
         className={styles.button}
       >

@@ -6,16 +6,25 @@
   border-radius: 0.7rem;
   width: 30rem;
   transition: all 0.3s;
-  background-color: #67b4a7c6;
-  color: rgb(221, 221, 221);
+  background-color: #e7d8c9;
+  color: #b2967d;
 }
 
 .searchbar::placeholder {
-  color: #30534ec6;
+  color: #b2967d;
 }
 
 .searchbar:focus {
   outline: none;
   box-shadow: 0 2.4rem 2.4rem rgba(0, 0, 0, 0.1);
   transform: translateY(-2px);
+}
+
+@media (max-width: 900px) {
+  .searchbar {
+    display: flex;
+    flex-direction: column;
+    width: 80vw;
+    margin-top: 10px;
+  }
 }

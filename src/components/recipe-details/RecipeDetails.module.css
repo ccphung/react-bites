@@ -4,14 +4,14 @@
   justify-content: flex-start;
   font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
   align-items: center;
-  background: rgb(220, 218, 218);
+  background: #e0e9e9;
   min-height: 800px;
   height: 100%;
-  border-radius: 20px;
+  border-radius: 10px;
   padding: 20px;
-  width: 100%;
-  min-width: 500px;
+  width: 500px;
   position: relative;
+  text-align: center;
 }
 
 .recipeDetailImgContainer {
@@ -49,4 +49,26 @@
 
 .recipeDetailsFav:hover {
   text-decoration: underline;
+}
+
+.smallScreen {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .recipeDetails {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80vw;
+  }
+  .smallScreen {
+    display: block;
+  }
+}
+
+@media (max-width: 900px) {
+  .largeScreen {
+    display: none;
+  }
 }

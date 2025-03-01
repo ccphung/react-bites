@@ -4,6 +4,8 @@
   justify-content: flex-start;
   align-items: center;
   max-width: 100%;
+  height: 100%;
+  margin-bottom: 50px;
 }
 
 .favoritesWrapper {
@@ -16,6 +18,5 @@
   word-wrap: break-word;
   white-space: normal;
   overflow-wrap: break-word;
-  text-align: center;
   max-width: 100%;
 }

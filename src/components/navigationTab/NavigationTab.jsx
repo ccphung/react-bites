@@ -3,16 +3,17 @@ import styles from "./NavigationTab.module.css";
 import { Button } from "@mui/material";
 
 function NavigationTab() {
-  const { dispatch, showFavorites } = useRecipe();
+  const { dispatch, showFavorites, showRecipeDetails, showResults } =
+    useRecipe();
   return (
     <nav className={styles.nav}>
       <ul>
         <li>
           <Button
             variant="contained"
-            color={showFavorites ? "default" : "primary"}
-            className={showFavorites ? styles.nonActiveTab : styles.activeTab}
-            onClick={() => dispatch({ type: "hideFavorites" })}
+            color={showResults ? "primary" : "default"}
+            className={showResults ? styles.activeTab : styles.nonActiveTab}
+            onClick={() => dispatch({ type: "showResults" })}
           >
             Results
           </Button>
@@ -26,6 +27,18 @@ function NavigationTab() {
             onClick={() => dispatch({ type: "showFavorites" })}
           >
             Favorites
+          </Button>
+        </li>
+        <li className={styles.recipeDetailsBtn}>
+          <Button
+            variant="contained"
+            color={showRecipeDetails ? "primary" : "default"}
+            className={
+              showRecipeDetails ? styles.activeTab : styles.nonActiveTab
+            }
+            onClick={() => dispatch({ type: "showRecipeDetails" })}
+          >
+            Recipe
           </Button>
         </li>
       </ul>

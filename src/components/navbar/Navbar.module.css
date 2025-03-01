@@ -1,9 +1,24 @@
 .nav {
-  background: #00c9a7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
   display: flex;
   justify-content: space-around;
   align-items: center;
+  background: #e6beae;
   margin: 20px;
   padding: 20px;
   border-radius: 20px;
+  width: 1048px;
+}
+
+@media (max-width: 900px) {
+  .container {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+  }
 }
