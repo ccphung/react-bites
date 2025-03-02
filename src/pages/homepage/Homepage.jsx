@@ -1,5 +1,5 @@
 import styles from "./Homepage.module.css";
-import Recipes from "../../components/recipes/recipes";
+import Recipes from "../../components/recipes/Recipes";
 import RecipeDetails from "../../components/recipe-details/RecipeDetails";
 import Favorites from "../../components/favorites/Favorites";
 import NavigationTab from "../../components/navigationTab/NavigationTab";
