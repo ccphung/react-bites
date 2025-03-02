@@ -31,6 +31,7 @@ Si vous souhaitez cloner ce projet sur votre machine locale, exécutez les comma
 ```bash
 git clone https://github.com/ccphung/react-bites.git
 cd react-bites
+````
 
 ### Installer les dépendances
 
@@ -38,6 +39,7 @@ Installez les dépendances nécessaires avec npm :
 
 ```bash
 npm install
+````
 
 
 ### Lancer l'application
@@ -46,6 +48,8 @@ Pour démarrer l'application en mode développement, exécutez :
 
 ```bash
 npm run dev
+````
+
 
 L'application sera accessible à l'adresse http://localhost:5173
 
