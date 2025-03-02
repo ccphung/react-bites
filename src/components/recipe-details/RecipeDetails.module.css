@@ -18,6 +18,11 @@
   margin: 15px;
 }
 
+.recipeDetails ul {
+  padding: 0;
+  margin: 0;
+}
+
 .recipeDetailImgContainer {
   position: relative;
   margin: 0px;

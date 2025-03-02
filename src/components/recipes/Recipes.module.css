@@ -7,6 +7,11 @@
   margin-bottom: 50px;
 }
 
+.recipes ul {
+  padding: 0;
+  margin: 0;
+}
+
 .recipesWrapper {
   display: grid;
   grid-template-columns: 1fr 1fr;
