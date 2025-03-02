@@ -8,6 +8,11 @@
   margin-bottom: 50px;
 }
 
+.favorites ul {
+  padding: 0;
+  margin: 0;
+}
+
 .favoritesWrapper {
   display: grid;
   grid-template-columns: 1fr 1fr;
